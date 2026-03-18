@@ -24,7 +24,7 @@ targets:
         CFBundleName: Stems Shortcut
         LSUIElement: YES
         NSAccessibilityUsageDescription: "Stems Shortcut needs Accessibility access to trigger menu items in Ableton Live on your behalf."
-        SUFeedURL: "https://lochiamerolutah.github.io/StemsShortcut/appcast.xml"
+        SUFeedURL: "https://lochiameroiutah.github.io/StemsShortcut/appcast.xml"
         SUPublicEDKey: "dWaXya793SYbncHOBT4ZwsHuKeTxy4cdJyw74S7HYok="
     dependencies:
       - sdk: ServiceManagement.framework
@@ -43,7 +43,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.matteozampieri.stemseparator
         PRODUCT_NAME: Stems Shortcut
         CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: SH493RXK4R
+        DEVELOPMENT_TEAM: 7HB6926XLK
         CODE_SIGN_IDENTITY: "Apple Development"
         ENABLE_HARDENED_RUNTIME: NO
       configs:
