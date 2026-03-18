@@ -49,8 +49,8 @@ jobs:
       - name: Create ZIP for Sparkle
         run: |
           APP_PATH="DerivedData/Build/Products/Release/${PRODUCT_NAME}.app"
-          ditto -c -k --keepParent "$APP_PATH" "${PRODUCT_NAME}.zip"
-          echo "ZIP_SIZE=$(stat -f%z "${PRODUCT_NAME}.zip")" >> $GITHUB_ENV
+          ditto -c -k --keepParent "$APP_PATH" "StemsShortcut.zip"
+          echo "ZIP_SIZE=$(stat -f%z "StemsShortcut.zip")" >> $GITHUB_ENV
 
       - name: Generate Sparkle signature
         run: |
@@ -62,7 +62,7 @@ jobs:
           echo -n "${{ secrets.SPARKLE_PRIVATE_KEY }}" > /tmp/sparkle_ed_key
 
           # Sign the ZIP
-          SIGNATURE=$(/tmp/sparkle/bin/sign_update "${PRODUCT_NAME}.zip" --ed-key-file /tmp/sparkle_ed_key | grep "sparkle:edSignature" | sed 's/.*"\(.*\)".*/\1/')
+          SIGNATURE=$(/tmp/sparkle/bin/sign_update "StemsShortcut.zip" --ed-key-file /tmp/sparkle_ed_key | grep "sparkle:edSignature" | sed 's/.*"\(.*\)".*/\1/')
           echo "SPARKLE_SIG=${SIGNATURE}" >> $GITHUB_ENV
           rm /tmp/sparkle_ed_key
 
@@ -71,7 +71,7 @@ jobs:
           VERSION="${{ steps.version.outputs.VERSION }}"
           TAG="${GITHUB_REF_NAME}"
           DATE=$(date -R)
-          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${TAG}/${PRODUCT_NAME// /%20}.zip"
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${TAG}/StemsShortcut.zip"
 
           cat > appcast.xml << XMLEOF
           <?xml version="1.0" encoding="utf-8"?>
@@ -107,7 +107,7 @@ jobs:
 
             Auto-update via Sparkle. Gli utenti esistenti riceveranno l'aggiornamento automaticamente.
           files: |
-            ${{ env.PRODUCT_NAME }}.zip
+            StemsShortcut.zip
           draft: false
           prerelease: false
 
