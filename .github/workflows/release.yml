@@ -53,13 +53,17 @@ jobs:
           echo "ZIP_SIZE=$(stat -f%z "StemsShortcut.zip")" >> $GITHUB_ENV
 
       - name: Generate Sparkle signature
+        env:
+          SPARKLE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
         run: |
           # Download Sparkle's sign_update tool
           curl -sL "https://github.com/sparkle-project/Sparkle/releases/download/2.6.0/Sparkle-2.6.0.tar.xz" -o /tmp/sparkle.tar.xz
           mkdir -p /tmp/sparkle && tar -xJ -C /tmp/sparkle -f /tmp/sparkle.tar.xz
 
-          # Sign the ZIP using stdin for the private key
-          SIGNATURE=$(echo "${{ secrets.SPARKLE_PRIVATE_KEY }}" | /tmp/sparkle/bin/sign_update "StemsShortcut.zip" --ed-key-file - -p)
+          # Write key to temp file and sign
+          echo -n "$SPARKLE_KEY" > /tmp/sparkle_key
+          SIGNATURE=$(/tmp/sparkle/bin/sign_update "StemsShortcut.zip" --ed-key-file /tmp/sparkle_key -p)
+          rm -f /tmp/sparkle_key
           echo "SPARKLE_SIG=${SIGNATURE}" >> $GITHUB_ENV
 
       - name: Generate appcast.xml
