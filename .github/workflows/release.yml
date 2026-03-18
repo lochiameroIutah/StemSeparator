@@ -113,17 +113,21 @@ jobs:
 
       - name: Deploy appcast to GitHub Pages
         run: |
+          # Save appcast to temp before switching branches
+          cp appcast.xml /tmp/appcast.xml
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Create or switch to gh-pages branch
           git fetch origin gh-pages || true
           git checkout gh-pages 2>/dev/null || git checkout --orphan gh-pages
 
-          # Clean and add appcast
+          # Clean working tree
           git rm -rf . 2>/dev/null || true
-          cp appcast.xml .
-          echo "<html><body><h1>Stems Shortcut Updates</h1><p><a href='appcast.xml'>appcast.xml</a></p></body></html>" > index.html
+
+          # Copy appcast from temp
+          cp /tmp/appcast.xml appcast.xml
+          echo '<html><body><h1>Stems Shortcut Updates</h1><p><a href="appcast.xml">appcast.xml</a></p></body></html>' > index.html
 
           git add appcast.xml index.html
           git commit -m "Update appcast for v${{ steps.version.outputs.VERSION }}"
