@@ -45,12 +45,12 @@ Tu fai modifiche → commit → tag → push
 | Cosa | Dove |
 |---|---|
 | Workflow CI/CD | `.github/workflows/release.yml` |
-| Appcast (feed Sparkle) | https://lochiamerolutah.github.io/StemSeparator/appcast.xml |
+| Appcast (feed Sparkle) | https://lochiamerolutah.github.io/StemsShortcut/appcast.xml |
 | GitHub Pages branch | `gh-pages` |
 | Chiave pubblica EdDSA | `project.yml` → `SUPublicEDKey` |
 | Chiave privata EdDSA | GitHub Secret `SPARKLE_PRIVATE_KEY` |
 | Chiave privata locale | `sparkle_private_key.pem` (NON committata) |
-| Updater nell'app | `StemSeparator/UpdaterManager.swift` |
+| Updater nell'app | `StemsShortcut/UpdaterManager.swift` |
 | Check automatico | Ogni 24 ore |
 
 ---
@@ -133,11 +133,11 @@ Il workflow parte automaticamente quando pushi un tag che inizia con `v`.
 ## Struttura del progetto
 
 ```
-StemSeparator/
+StemsShortcut/
 ├── .github/workflows/release.yml  ← CI/CD
 ├── project.yml                     ← Config XcodeGen
-├── StemSeparator/
-│   ├── StemSeparatorApp.swift      ← Entry point
+├── StemsShortcut/
+│   ├── StemsShortcutApp.swift      ← Entry point
 │   ├── AppState.swift              ← Stato globale
 │   ├── AbletonController.swift     ← Automazione menu Ableton
 │   ├── HotkeyManager.swift         ← Hotkey globale (Carbon)
@@ -150,7 +150,7 @@ StemSeparator/
 │   ├── LoginItemManager.swift      ← Avvio al login
 │   ├── L.swift                     ← Localizzazione IT/EN
 │   ├── Info.plist
-│   ├── StemSeparator.entitlements
+│   ├── StemsShortcut.entitlements
 │   └── Assets.xcassets/
 ├── build_dmg.sh                    ← Script creazione DMG
 ├── make_dmg_bg.py                  ← Background DMG

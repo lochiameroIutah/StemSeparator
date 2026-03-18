@@ -1,4 +1,4 @@
-name: StemSeparator
+name: StemsShortcut
 
 options:
   deploymentTarget:
@@ -12,7 +12,7 @@ packages:
     from: "2.6.0"
 
 targets:
-  StemSeparator:
+  StemsShortcut:
     type: application
     platform: macOS
     sources:
@@ -24,7 +24,7 @@ targets:
         CFBundleName: Stems Shortcut
         LSUIElement: YES
         NSAccessibilityUsageDescription: "Stems Shortcut needs Accessibility access to trigger menu items in Ableton Live on your behalf."
-        SUFeedURL: "https://lochiamerolutah.github.io/StemSeparator/appcast.xml"
+        SUFeedURL: "https://lochiamerolutah.github.io/StemsShortcut/appcast.xml"
         SUPublicEDKey: "dWaXya793SYbncHOBT4ZwsHuKeTxy4cdJyw74S7HYok="
     dependencies:
       - sdk: ServiceManagement.framework

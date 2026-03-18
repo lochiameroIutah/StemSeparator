@@ -10,7 +10,7 @@ permissions:
   pages: write
 
 env:
-  SCHEME: StemSeparator
+  SCHEME: StemsShortcut
   APP_NAME: "Stems Shortcut"
   PRODUCT_NAME: "Stems Shortcut"
 
@@ -32,13 +32,13 @@ jobs:
         run: xcodegen generate
 
       - name: Resolve SPM dependencies
-        run: xcodebuild -resolvePackageDependencies -scheme "$SCHEME" -project StemSeparator.xcodeproj
+        run: xcodebuild -resolvePackageDependencies -scheme "$SCHEME" -project StemsShortcut.xcodeproj
 
       - name: Build Release
         run: |
           xcodebuild build \
             -scheme "$SCHEME" \
-            -project StemSeparator.xcodeproj \
+            -project StemsShortcut.xcodeproj \
             -configuration Release \
             -derivedDataPath DerivedData \
             CODE_SIGN_IDENTITY="-" \
@@ -78,7 +78,7 @@ jobs:
           <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
             <channel>
               <title>Stems Shortcut Updates</title>
-              <link>https://${{ github.repository_owner }}.github.io/StemSeparator/appcast.xml</link>
+              <link>https://${{ github.repository_owner }}.github.io/StemsShortcut/appcast.xml</link>
               <description>Updates for Stems Shortcut</description>
               <language>en</language>
               <item>
