@@ -1,0 +1,55 @@
+name: StemSeparator
+
+options:
+  deploymentTarget:
+    macOS: "13.0"
+  bundleIdPrefix: com.matteozampieri
+  createIntermediateGroups: true
+
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: "2.6.0"
+
+targets:
+  StemSeparator:
+    type: application
+    platform: macOS
+    sources:
+      - path: StemSeparator
+    info:
+      path: StemSeparator/Info.plist
+      properties:
+        CFBundleDisplayName: Stems Shortcut
+        CFBundleName: Stems Shortcut
+        LSUIElement: YES
+        NSAccessibilityUsageDescription: "Stems Shortcut needs Accessibility access to trigger menu items in Ableton Live on your behalf."
+        SUFeedURL: "https://lochiamerolutah.github.io/StemSeparator/appcast.xml"
+        SUPublicEDKey: "dWaXya793SYbncHOBT4ZwsHuKeTxy4cdJyw74S7HYok="
+    dependencies:
+      - sdk: ServiceManagement.framework
+      - package: Sparkle
+    entitlements:
+      path: StemSeparator/StemSeparator.entitlements
+      properties:
+        com.apple.security.app-sandbox: NO
+        com.apple.security.network.client: YES
+        com.apple.security.automation.apple-events: YES
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_VERSION: "5.9"
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+        PRODUCT_BUNDLE_IDENTIFIER: com.matteozampieri.stemseparator
+        PRODUCT_NAME: Stems Shortcut
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: SH493RXK4R
+        CODE_SIGN_IDENTITY: "Apple Development"
+        ENABLE_HARDENED_RUNTIME: NO
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Developer ID Application"
+          DEVELOPMENT_TEAM: "7HB6926XLK"
+          PROVISIONING_PROFILE_SPECIFIER: ""
+          ENABLE_HARDENED_RUNTIME: YES

@@ -1,0 +1,20 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# macOS
+.DS_Store
+
+# Distribution
+dist/
+
+# Generated mockups/screenshots
+screenshot_*.png
+about_*.png
+render_about.py
+render_screenshots.py
+
+# Sparkle keys (NEVER commit the private key)
+sparkle_private_key.pem
